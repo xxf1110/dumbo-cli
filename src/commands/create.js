@@ -95,10 +95,10 @@ module.exports = inquirer
                 spinner.stop();
                 console.log(chalk.green('project init successfully!'))
                 console.log(`
-                    ${chalk.bgWhite.black('   Run Application  ')}
-                    ${chalk.yellow(`cd ${name}`)}
-                    ${chalk.yellow('npm install')}
-                    ${chalk.yellow('npm start')}
+                    ${chalk.green('   Run Application  ')}
+                    ${chalk.green(`cd ${name}`)}
+                    ${chalk.green('npm install')}
+                    ${chalk.green('npm start')}
                 `);
             } catch (error) {
                 spinner.stop();

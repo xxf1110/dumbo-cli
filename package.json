@@ -1,13 +1,13 @@
 {
     "name": "dumbo-cli",
-    "version": "1.0.0",
+    "version": "1.0.3",
     "description": "dumbo-cli",
-    "main": "./src/main.js",
+    "main": "bin/cmd.sh",
     "scripts": {},
     "bin": {
-        "dumbo-cli": "./src/main.js",
-        "db-cli": "./src/main.js",
-        "dbc": "./src/main.js"
+        "dumbo-cli": "bin/cmd.sh",
+        "db-cli": "bin/cmd.sh",
+        "dbc": "bin/cmd.sh"
     },
     "keywords": [
         "脚手架"
