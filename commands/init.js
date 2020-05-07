@@ -1,15 +1,15 @@
-const { prompt } = require('inquirer')
+const inquirer = require('inquirer')
 const program = require('commander')
 const chalk = require('chalk')
 const download = require('download-git-repo')
 const ora = require('ora')
-const fs = require('fs')
+const fs = require('fs').promises 
 const path = require('path')
 
 const option = program.parse(process.argv).args[0]
 const defaultName = typeof option === 'string' ? option : 'react-project'
 const tpMap = require(path.resolve(__dirname, '../templates/index'))
-const tplLists = Object.keys(tpMap) || []; 
+const tplLists = Object.keys(tpMap) || [];
 
 
 const question = [
@@ -69,46 +69,44 @@ const question = [
 ]
 
 
-module.exports = prompt(question)
+module.exports = inquirer
+    .prompt(question)
     .then(({ name, template, description, author }) => {
         const projectName = name;
         const templateName = template;
         const gitPlace = tpMap[templateName]['place'];
         const gitBranch = tpMap[templateName]['branch'];
-        const spinner = ora('downloading template please wait...');
-        spinner.start();
-        download(`${gitPlace}${gitBranch}`, `./${projectName}`, (err) => {
+        const spinner = ora(chalk.green('downloading template please wait...'));
+        spinner.color = 'green'
+        spinner.start(); 
+        download(`direct:${gitPlace}#${gitBranch}`, `./${projectName}`, { clone: true }, async (err) => {
             if (err) {
                 console.log(chalk.red(err))
                 process.exit()
-            }
-            fs.readFile(`./${projectName}/package.json`, 'utf8', function (err, data) {
-                if (err) {
-                    spinner.stop();
-                    console.error(err);
-                    return;
-                }
+            } 
+            try {
+                const data = await fs.readFile(`./${projectName}/package.json`, 'utf8')
                 const packageJson = JSON.parse(data);
                 packageJson.name = name;
                 packageJson.description = description;
                 packageJson.author = author;
-                var updatePackageJson = JSON.stringify(packageJson, null, 2);
-                fs.writeFile(`./${projectName}/package.json`, updatePackageJson, 'utf8', function (err) {
-                    if (err) {
-                        spinner.stop();
-                        console.error(err);
-                        return;
-                    } else {
-                        spinner.stop();
-                        console.log(chalk.green('project init successfully!'))
-                        console.log(`
-            ${chalk.bgWhite.black('   Run Application  ')}
-            ${chalk.yellow(`cd ${name}`)}
-            ${chalk.yellow('npm install')}
-            ${chalk.yellow('npm start')}
-          `);
-                    }
-                });
-            });
+                const updatePackageJson = JSON.stringify(packageJson, null, 2); 
+                await fs.writeFile(`./${projectName}/package.json`, updatePackageJson, 'utf8')
+                spinner.stop();
+                console.log(chalk.green('project init successfully!'))
+                console.log(`
+                    ${chalk.bgWhite.black('   Run Application  ')}
+                    ${chalk.yellow(`cd ${name}`)}
+                    ${chalk.yellow('npm install')}
+                    ${chalk.yellow('npm start')}
+                `);
+            } catch (error) {
+                spinner.stop();
+                console.error(error);
+                return;
+            } 
         })
     })
+    .catch(err => {
+        console.log(err);
+    }) 

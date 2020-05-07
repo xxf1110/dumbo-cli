@@ -2,15 +2,12 @@
     "name": "dumbo-cli",
     "version": "1.0.0",
     "description": "dumbo-cli",
-    "main": "main.js",
-    "scripts": {
-        "compile": "babel src -d dist",
-        "watch": "npm run compile -- --watch"
-    },
+    "main": "./bin/dumbo.js",
+    "scripts": {},
     "bin": {
-        "dumbo-cli": "./bin/cmd.sh",
-        "db-cli": "./bin/cmd.sh",
-        "dbc": "./bin/cmd.sh"
+        "dumbo-cli": "./bin/dumbo-cli.js",
+        "db-cli": "./bin/dumbo-cli.js",
+        "dbc": "./bin/dumbo-cli.js"
     },
     "keywords": [
         "脚手架"
@@ -26,13 +23,6 @@
         "ora": "^4.0.4"
     },
     "devDependencies": {
-        "@babel/cli": "^7.8.4",
-        "@babel/core": "^7.9.6",
-        "@babel/plugin-proposal-class-properties": "^7.8.3",
-        "@babel/plugin-proposal-decorators": "^7.8.3",
-        "@babel/plugin-proposal-optional-chaining": "^7.9.0",
-        "@babel/plugin-proposal-private-methods": "^7.8.3",
-        "@babel/plugin-transform-runtime": "^7.9.6",
-        "@babel/preset-env": "^7.9.6"
+         
     }
 }
