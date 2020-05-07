@@ -1,1 +1,21 @@
-console.log('我是一个可以正常运行的项目啦！！！1')
+// 主程序入口  
+process.env.NODE_PATH = __dirname + '/../node_modules/'
+const { resolve } = require('path')
+const res = command => resolve(__dirname, '../commands/', command)
+const program = require('commander')
+
+program.version(require('../package.json').version)
+
+program.usage('<command>')
+
+program.command('init')
+    .option('-f, --foo', 'enable some foo')
+    .description('Generate a new project')
+    .alias('i')
+    .action(() => {
+        require(res('init'))
+    })
+
+if (!program.args.length) {
+    program.help()
+}
