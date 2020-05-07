@@ -2,12 +2,12 @@
     "name": "dumbo-cli",
     "version": "1.0.0",
     "description": "dumbo-cli",
-    "main": "./bin/dumbo.js",
+    "main": "./src/main.js",
     "scripts": {},
     "bin": {
-        "dumbo-cli": "./bin/dumbo-cli.js",
-        "db-cli": "./bin/dumbo-cli.js",
-        "dbc": "./bin/dumbo-cli.js"
+        "dumbo-cli": "./src/main.js",
+        "db-cli": "./src/main.js",
+        "dbc": "./src/main.js"
     },
     "keywords": [
         "脚手架"
@@ -21,8 +21,5 @@
         "inquirer": "^7.1.0",
         "log-symbols": "^4.0.0",
         "ora": "^4.0.4"
-    },
-    "devDependencies": {
-         
     }
 }

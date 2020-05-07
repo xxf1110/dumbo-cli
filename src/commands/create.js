@@ -8,7 +8,7 @@ const path = require('path')
 
 const option = program.parse(process.argv).args[0]
 const defaultName = typeof option === 'string' ? option : 'react-project'
-const tpMap = require(path.resolve(__dirname, '../templates/index'))
+const tpMap = require(path.resolve(__dirname, '../templates/templates'))
 const tplLists = Object.keys(tpMap) || [];
 
 
