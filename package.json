@@ -1,6 +1,6 @@
 {
     "name": "dumbo-cli",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "description": "dumbo-cli",
     "main": "bin/cmd.sh",
     "scripts": {},
