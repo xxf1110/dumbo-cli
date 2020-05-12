@@ -4,6 +4,7 @@ const chalk = require('chalk')
 const download = require('download-git-repo')
 const ora = require('ora')
 const fs = require('fs').promises 
+const FS = require('fs')
 const path = require('path')
 
 const option = program.parse(process.argv).args[0]
