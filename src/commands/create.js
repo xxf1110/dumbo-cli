@@ -72,7 +72,12 @@ const question = [
 module.exports = inquirer
     .prompt(question)
     .then(({ name, template, description, author }) => {
-        const projectName = name;
+        const projectName = name; 
+        const isExist = FS.existsSync(path.resolve(process.cwd(), `./${projectName}`)) 
+        if(isExist){
+            console.log(chalk.red(`当前路径存在${projectName}`))
+            process.exit()
+        }  
         const templateName = template;
         const gitPlace = tpMap[templateName]['place'];
         const gitBranch = tpMap[templateName]['branch'];
@@ -98,7 +103,7 @@ module.exports = inquirer
                     ${chalk.green('   Run Application  ')}
                     ${chalk.green(`cd ${name}`)}
                     ${chalk.green('npm install')}
-                    ${chalk.green('npm start')}
+                    ${chalk.green(`${template === 'react' ? 'npm start' : 'npm run serve'}`)}
                 `);
             } catch (error) {
                 spinner.stop();
