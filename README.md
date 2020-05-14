@@ -11,9 +11,28 @@ npm install -g dumbo-cli
 
 ##### 2、使用
 
+以下命令可简写为：db-cli、dbc
+
+初始化项目
+
 ```js
-dumbo-cli/db-cli/dbc create
+dumbo-cli create
 ```
+
+打包
+
+```
+dumbo-cli build
+```
+
+部署
+
+```js
+dumbo-cli deploy
+```
+
+注：自动化部署内置于react 模板中，暂只支持react项目
+
 
 
 ###### 注：
