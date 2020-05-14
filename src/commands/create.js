@@ -101,7 +101,7 @@ module.exports = inquirer
                 spinner.stop();
                 console.log(chalk.green('project init successfully!'))
                 console.log(`
-                    ${chalk.green('   Run Application  ')}
+                    ${chalk.green('Run Application  ')}
                     ${chalk.green(`cd ${name}`)}
                     ${chalk.green('npm install')}
                     ${chalk.green(`${template === 'react' ? 'npm start' : 'npm run serve'}`)}
@@ -115,4 +115,5 @@ module.exports = inquirer
     })
     .catch(err => {
         console.log(err);
+        process.exit()
     }) 
